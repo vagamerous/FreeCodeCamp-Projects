@@ -1,3 +1,6 @@
+from Balance.conversor import converte_amount_str
+
+
 class Category:
 
   ledger: list = []
@@ -14,11 +17,11 @@ class Category:
     else:
       return True
 
-  def deposit(self: object, amount: float, description="None"):
+  def deposit(self: object, amount: float, description: str ="None"):
     Category.ledger.append({'amount': amount, 'description': description})
     self.__balance: float = Category.balance + float(amount)
 
-  def withdraw(self, amount, description='None'):
+  def withdraw(self, amount, description: str ='None'):
     x = Category.check_funds(self, amount)
     if x == True:
       Category.ledger.append({'amount': amount, 'description': description})
@@ -39,6 +42,14 @@ class Category:
     else:
       return False
 
-  def __str__(self: object) -> str:
-    return f'{self.__category:*^30}'
+  def __str__(self: object) -> str:  
+    return self.formatacao()
 
+  def formatacao(self: object) -> None:
+    print(f'{self.__category:*^30}') 
+    for element in self.ledger:
+      print('{: <23}'.format(element['description']), '{: >7}'.format(converte_amount_str(element['amount'])))
+
+    for element in self.ledger:
+      print(type(element['description']))
+      print(type(converte_amount_str(element['amount'])))
