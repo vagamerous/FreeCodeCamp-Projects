@@ -1,4 +1,4 @@
-from convert_amount_str import convert_amount_str
+from Balance.conversor import converte_amount_str
 
 
 class Category:
@@ -17,11 +17,11 @@ class Category:
     else:
       return True
 
-  def deposit(self: object, amount: float, description="None"):
+  def deposit(self: object, amount: float, description: str ="None"):
     Category.ledger.append({'amount': amount, 'description': description})
     self.__balance: float = Category.balance + float(amount)
 
-  def withdraw(self, amount, description='None'):
+  def withdraw(self, amount, description: str ='None'):
     x = Category.check_funds(self, amount)
     if x == True:
       Category.ledger.append({'amount': amount, 'description': description})
@@ -42,13 +42,15 @@ class Category:
     else:
       return False
 
+  def __str__(self: object) -> str:
+    """É o que aparece na tela quando o usa-se o comando print no objeto -> print(objeto)"""
+    return f'{self.formatacao()}'
 
-
-  def formatacao(self: object) -> None:
+  def formatacao(self: object) -> str:
+    """Formata o  ledger quando faz o print do objeto"""
+    print(f'{self.__category:*^30}') 
     for element in self.ledger:
-      print('{: <23}'.format(element['description']), '{: >7}'.format(convret_amount_str(element['amount'])))
-  
-  def __str__(self: object):  
-    
-      return self.formatacao()
+      print('{: <23}'.format(element['description']), '{: >6}'.format(converte_amount_str(element['amount'])))
+    print('{: ^7} {: <23}'.format('Total: ', f'{self._Category__balance}'))
+    return ''
   
