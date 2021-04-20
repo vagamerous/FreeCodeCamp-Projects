@@ -54,3 +54,14 @@ class Category:
     print('{: ^7} {: <23}'.format('Total: ', f'{self._Category__balance}'))
     return ''
   
+  
+def create_spend_chart(categories: list):
+  
+  print('Percentage spent by category')
+  for x in range(10, 0, -1):
+      print('{: >4}'.format(f'{x}0|'))
+      for categ in categories:
+        if percentage >= 100:
+          print('o', end='')
+        else:
+          print('', end='')
