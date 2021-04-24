@@ -76,15 +76,56 @@ class Category:
 
 def create_spend_chart():
 
-    percentage = 0
+      percentage0:float = 0
+  percentage1:float = 0
+  percentage2:float = 0
+  percentage3:float = 0
+  p0:str = ''
+  p1:str = ''
+  p2:str = ''
+  p3:str = ''
+  fin:str = '0|'
   
+  
+  if len(Category.categories) == 1:
+      percentage0 = 10*(Category.spentmap[Category.categories[0]] / Category.spent)
+  if len(Category.categories) == 2:
+      percentage0 = 10*(Category.spentmap[Category.categories[0]] / Category.spent)
+      percentage1 = 10*(Category.spentmap[Category.categories[1]] / Category.spent)
+  if len(Category.categories) == 3:
+      percentage0 = 10*(Category.spentmap[Category.categories[0]] / Category.spent)
+      percentage1 = 10*(Category.spentmap[Category.categories[1]] / Category.spent)
+      percentage2 = 10*(Category.spentmap[Category.categories[2]] / Category.spent)
+  if len(Category.categories) == 4:
+      percentage0 = 10*(Category.spentmap[Category.categories[0]] / Category.spent)
+      percentage1 = 10*(Category.spentmap[Category.categories[1]] / Category.spent)
+      percentage2 = 10*(Category.spentmap[Category.categories[2]] / Category.spent)
+      percentage3 = 10*(Category.spentmap[Category.categories[3]] / Category.spent)
+
   print('Percentage spent by category')
+  
   for x in range(10, 0, -1):
-    print('{: >4}'.format(f'{x}0|', end=''))
-    for element in Category.categories:
-      percentage = 10*(Category.spentmap[element] / Category.spent)
-      if percentage >= (x):
-        print('{: ^3}'.format('o', end=''))
-      else:
-        print('{: ^3}'.format('', end=''))
+    
+
+    if percentage0 >= x:
+      p0 = 'o'
+    else:
+      p0 = ''
+    
+    if percentage1 >= x:
+      p1 = 'o'
+    else:
+      p1 = ''
+
+    if percentage2 >= x:
+      p2 = 'o'
+    else:
+      p2 = ''
+
+    if percentage3 >= x:
+      p3 = 'o'
+    else:
+      p3 = ''
+    
+    print(f'{x: >2}{fin:^2}{p0: ^3}{p1: ^3}{p2: ^3}{p3: ^3}')
   
