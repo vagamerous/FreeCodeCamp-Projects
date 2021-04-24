@@ -76,7 +76,7 @@ class Category:
 
 def create_spend_chart():
 
-      percentage0:float = 0
+  percentage0:float = 0
   percentage1:float = 0
   percentage2:float = 0
   percentage3:float = 0
@@ -84,8 +84,7 @@ def create_spend_chart():
   p1:str = ''
   p2:str = ''
   p3:str = ''
-  fin:str = '0|'
-  
+  fin:str = '0|'  
   
   if len(Category.categories) == 1:
       percentage0 = 10*(Category.spentmap[Category.categories[0]] / Category.spent)
@@ -104,8 +103,7 @@ def create_spend_chart():
 
   print('Percentage spent by category')
   
-  for x in range(10, 0, -1):
-    
+  for x in range(10, 0, -1):    
 
     if percentage0 >= x:
       p0 = 'o'
