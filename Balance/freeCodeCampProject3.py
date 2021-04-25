@@ -1,4 +1,5 @@
 from Balance.conversor import converte_amount_str
+from Balance.conversor import negative_amount
 """arquivo que contem uma unica funcao que converte o valor inserido em string para ser retornado no final"""
 
 class Category:
@@ -12,7 +13,7 @@ class Category:
   def __init__(self, category: str):
     self.__category: str = category
     self.__balance: float = Category.balance
-    self.__ledger: list = Category.ledger
+    self.__ledger: list = []
     Category.categories.append(self.__category)
     self.__spent: float = Category.spent
     self.__spentmap = Category.spentmap
@@ -31,7 +32,7 @@ class Category:
   def withdraw(self, amount, description: str ='None'):
     x = Category.check_funds(self, amount)
     if x == True:
-      Category.ledger.append({'amount': amount, 'description': description})
+      Category.ledger.append({'amount': negative_amount(amount), 'description': description})
       self.__balance = self.__balance - float(amount)
       Category.spent =  Category.spent + float(amount)
       found = False
@@ -66,7 +67,7 @@ class Category:
   def formatacao(self: object) -> str:
     """Formata o  ledger quando faz o print do objeto"""
     print(f'{self.__category:*^30}') 
-    for element in self.ledger:
+    for element in self.__ledger:
       print('{: <23}'.format(element['description']), '{: >6}'.format(converte_amount_str(element['amount'])))
     print('{: ^7} {: <23}'.format('Total: ', f'{self._Category__balance}'))
     return ''
