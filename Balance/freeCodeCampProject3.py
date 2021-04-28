@@ -72,7 +72,48 @@ class Category:
     print('{: ^7} {: <23}'.format('Total: ', f'{self._Category__balance}'))
     return ''
 
-  
+def bottom_chart_format():
+  f = ' '
+  if len(Category.categories) >= 1:
+    c1 = list(Category.categories[0])
+    maior = len((c1))
+  if len(Category.categories) >= 2:
+    c2 = list(Category.categories[1])
+    if len((c1)) > len((c2)):
+      for x in range((len(c1) - len(c2))):
+        c2.append(f)
+    if len((c2)) > len((c1)):
+      for x in range((len(c2) - len(c1))):
+        c1.append(f)
+      maior = len((c2))
+  else:
+    return c1
+  if len(Category.categories) >= 3:
+    c3 = list(Category.categories[2])
+    if len((c3)) > maior:           
+      for x in range((len((c3)) - maior)):
+        c2.append(f)
+        c1.append(f)
+      maior = len((c3))
+    elif maior > len((c3)):
+      for x in range(maior - len((c3))):
+        c3.append(f)
+  else:
+    return c1, c2
+  if len(Category.categories) == 4:
+    c4 = list(Category.categories[3])
+    if len((c4)) > maior:
+      for x in range((len((c3)) - maior)):
+        c3.append(f) 
+        c2.append(f)
+        c1.append(f)
+      maior = len((c4))
+    elif maior > len((c4)):
+      for x in range(maior - len((c4))):
+        c4.append(f)
+    return c1, c2, c3, c4
+  else:
+    return c1, c2, c3  
 
 
 def create_spend_chart():
